@@ -1,6 +1,7 @@
 require('../mocks/fetchSimulator');
 const { fetchProducts } = require('../helpers/fetchProducts');
 const computadorSearch = require('../mocks/search');
+const { expect } = require('@jest/globals');
 
 describe('1 - Testa a função fetchProducts', () => {
   it('1.1 - Testa se fetchProducts é uma função.', () => {  
@@ -15,7 +16,7 @@ describe('1 - Testa a função fetchProducts', () => {
     expect(fetch).toBeCalled();
   });
 
-  it('1.3 - Testa se a função fetchProducts foi chamado com o endpoint correto.', async () => {
+  it('1.3 - Testa se a função fetchProducts foi chamada com o endpoint correto.', async () => {
     expect.assertions(1);
     await fetchProducts('computador');
     const response = 'https://api.mercadolibre.com/sites/MLB/search?q=computador';

@@ -38,18 +38,20 @@ const createCustomElement = (element, className, innerText) => {
  * @param {string} product.thumbnail - URL da imagem do produto.
  * @returns {Element} Elemento de produto.
  */
-const createProductItemElement = ({ id, title, thumbnail }) => {
-  const section = document.createElement('section');
-  section.className = 'item';
 
-  section.appendChild(createCustomElement('span', 'item_id', id));
-  section.appendChild(createCustomElement('span', 'item__title', title));
-  section.appendChild(createProductImageElement(thumbnail));
-  section.appendChild(createCustomElement('button', 'item__add', 'Adicionar ao carrinho!'));
+const getFather = document.querySelector('.items');
 
-  return section;
+const createProductItemElement = async ({ id, title, thumbnail }) => {
+    const section = document.createElement('section');
+    section.className = 'item';
+    section.appendChild(createCustomElement('span', 'item_id', id));
+    section.appendChild(createCustomElement('span', 'item__title', title));
+    section.appendChild(createProductImageElement(thumbnail));
+    section.appendChild(createCustomElement('button', 'item__add', 'Adicionar ao carrinho!'));
+    getFather.appendChild(section);
+    return section;
 };
-
+createProductItemElement();
 /**
  * Função que recupera o ID do produto passado como parâmetro.
  * @param {Element} product - Elemento do produto.
@@ -73,4 +75,4 @@ const createCartItemElement = ({ id, title, price }) => {
   return li;
 };
 
-//window.onload = () => { };
+window.onload = () => { };
