@@ -1,5 +1,4 @@
 const { fetchProducts } = require('./helpers/fetchProducts');
-
 // Esse tipo de comentário que estão antes de todas as funções são chamados de JSdoc,
 // experimente passar o mouse sobre o nome das funções e verá que elas possuem descrições! 
 
@@ -74,4 +73,4 @@ const createCartItemElement = ({ id, title, price }) => {
   return li;
 };
 
-window.onload = () => { };
+//window.onload = () => { };
