@@ -1,4 +1,3 @@
-const { fetchProducts } = require('./helpers/fetchProducts');
 // Esse tipo de comentário que estão antes de todas as funções são chamados de JSdoc,
 // experimente passar o mouse sobre o nome das funções e verá que elas possuem descrições! 
 
@@ -38,20 +37,18 @@ const createCustomElement = (element, className, innerText) => {
  * @param {string} product.thumbnail - URL da imagem do produto.
  * @returns {Element} Elemento de produto.
  */
+const createProductItemElement = ({ id, title, thumbnail }) => {
+  const section = document.createElement('section');
+  section.className = 'item';
 
-const getFather = document.querySelector('.items');
+  section.appendChild(createCustomElement('span', 'item_id', id));
+  section.appendChild(createCustomElement('span', 'item__title', title));
+  section.appendChild(createProductImageElement(thumbnail));
+  section.appendChild(createCustomElement('button', 'item__add', 'Adicionar ao carrinho!'));
 
-const createProductItemElement = async ({ id, title, thumbnail }) => {
-    const section = document.createElement('section');
-    section.className = 'item';
-    section.appendChild(createCustomElement('span', 'item_id', id));
-    section.appendChild(createCustomElement('span', 'item__title', title));
-    section.appendChild(createProductImageElement(thumbnail));
-    section.appendChild(createCustomElement('button', 'item__add', 'Adicionar ao carrinho!'));
-    getFather.appendChild(section);
-    return section;
+  return section;
 };
-createProductItemElement();
+
 /**
  * Função que recupera o ID do produto passado como parâmetro.
  * @param {Element} product - Elemento do produto.
@@ -75,4 +72,11 @@ const createCartItemElement = ({ id, title, price }) => {
   return li;
 };
 
-window.onload = () => { };
+window.onload = async () => {
+  const products = await fetchProducts('computador');
+  console.log(products);
+  products.results.forEach((element) => {
+    const getSectionParent = document.querySelector('.items');
+    getSectionParent.appendChild(createProductItemElement(element));
+  });
+};
