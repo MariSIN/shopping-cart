@@ -1,6 +1,5 @@
 require('../mocks/fetchSimulator');
 const { fetchItem } = require('../helpers/fetchItem');
-const item = require('../mocks/item');
 const { expect } = require('@jest/globals');
 
 describe('2 - Testa a função fetchItem', () => {
