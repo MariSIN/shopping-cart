@@ -5,7 +5,7 @@ const fetchProducts = async (item) => {
     const response = await request.json();
     return response;
   } catch (error) {
-    return error;
+   return error;
   }
 };
 if (typeof module !== 'undefined') {
