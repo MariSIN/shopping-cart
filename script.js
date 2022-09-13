@@ -44,8 +44,9 @@ const createProductItemElement = ({ id, title, thumbnail }) => {
   section.appendChild(createCustomElement('span', 'item_id', id));
   section.appendChild(createCustomElement('span', 'item__title', title));
   section.appendChild(createProductImageElement(thumbnail));
-  section.appendChild(createCustomElement('button', 'item__add', 'Adicionar ao carrinho!'));
-
+  const button = createCustomElement('button', 'item__add', 'Adicionar ao carrinho!');
+  section.appendChild(button);
+  
   return section;
 };
 
@@ -54,7 +55,7 @@ const createProductItemElement = ({ id, title, thumbnail }) => {
  * @param {Element} product - Elemento do produto.
  * @returns {string} ID do produto.
  */
-const getIdFromProductItem = (product) => product.querySelector('span.id').innerText;
+ const getIdFromProductItem = (product) => product.querySelector('span.item_id').innerText;
 
 /**
  * Função responsável por criar e retornar um item do carrinho.
@@ -68,15 +69,32 @@ const createCartItemElement = ({ id, title, price }) => {
   const li = document.createElement('li');
   li.className = 'cart__item';
   li.innerText = `ID: ${id} | TITLE: ${title} | PRICE: $${price}`;
-  li.addEventListener('click', cartItemClickListener);
+  // li.addEventListener('click', cartItemClickListener);
+  
   return li;
 };
 
-window.onload = async () => {
-  const products = await fetchProducts('computador');
-  console.log(products);
-  products.results.forEach((element) => {
+const products = async () => {
+  const allProducts = await fetchProducts('computador');
+  allProducts.forEach((element) => {
     const getSectionParent = document.querySelector('.items');
     getSectionParent.appendChild(createProductItemElement(element));
+});
+};
+
+const addToCart = () => {
+  const buttons = document.querySelectorAll('.item__add');
+  const cart = document.querySelector('.cart__items');
+  buttons.forEach((e) => {
+    e.addEventListener('click', async (event) => {
+      const product = event.target.parentNode.firstChild.innerText;
+      const productData = await fetchItem(product);
+      cart.appendChild(createCartItemElement(productData));
+    });
   });
+};
+
+window.onload = async () => {
+ await products();
+ await addToCart();
 };
