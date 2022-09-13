@@ -80,7 +80,7 @@ const createCartItemElement = ({ id, title, price }) => {
 
 const products = async () => {
   const allProducts = await fetchProducts('computador');
-  allProducts.forEach((element) => {
+  allProducts.results.forEach((element) => {
     const getSectionParent = document.querySelector('.items');
     getSectionParent.appendChild(createProductItemElement(element));
 });
