@@ -55,18 +55,21 @@ const createProductItemElement = ({ id, title, thumbnail }) => {
  * @param {Element} product - Elemento do produto.
  * @returns {string} ID do produto.
  */
- const getIdFromProductItem = (product) => product.querySelector('span.item_id').innerText;
+ // const getIdFromProductItem = (product) => product.querySelector('span.item_id').innerText;
+ 
+ /**
+  * Função responsável por criar e retornar um item do carrinho.
+  * @param {Object} product - Objeto do produto.
+  * @param {string} product.id - ID do produto.
+  * @param {string} product.title - Título do produto.
+  * @param {string} product.price - Preço do produto.
+  * @returns {Element} Elemento de um item do carrinho.
+  */
+const cart = document.querySelector('.cart__items');
 
-/**
- * Função responsável por criar e retornar um item do carrinho.
- * @param {Object} product - Objeto do produto.
- * @param {string} product.id - ID do produto.
- * @param {string} product.title - Título do produto.
- * @param {string} product.price - Preço do produto.
- * @returns {Element} Elemento de um item do carrinho.
- */
 const cartItemClickListener = (event) => {
   event.target.remove();
+  saveCartItems(cart.innerHTML);
 };
 
 const createCartItemElement = ({ id, title, price }) => {
@@ -74,7 +77,7 @@ const createCartItemElement = ({ id, title, price }) => {
   li.className = 'cart__item';
   li.innerText = `ID: ${id} | TITLE: ${title} | PRICE: $${price}`;
   li.addEventListener('click', cartItemClickListener);
-  
+
   return li;
 };
 
@@ -88,12 +91,12 @@ const products = async () => {
 
 const addToCart = () => {
   const buttons = document.querySelectorAll('.item__add');
-  const cart = document.querySelector('.cart__items');
   buttons.forEach((e) => {
     e.addEventListener('click', async (event) => {
       const product = event.target.parentNode.firstChild.innerText;
       const productData = await fetchItem(product);
       cart.appendChild(createCartItemElement(productData));
+      saveCartItems(cart.innerHTML);
     });
   });
 };
@@ -103,11 +106,21 @@ const clearCart = () => {
   const list = document.querySelector('.cart__items');
   reset.addEventListener('click', () => {
     list.innerText = '';
+    saveCartItems(cart.innerHTML);
   });
 };
 clearCart();
 
+const removeSaveItem = () => {
+  const getLi = document.querySelectorAll('.cart__item');
+  getLi.forEach((e) => {
+    e.addEventListener('click', cartItemClickListener);
+  });
+};
+
 window.onload = async () => {
  await products();
- await addToCart();
+ addToCart();
+ cart.innerHTML = getSavedCartItems();
+ removeSaveItem();
 };
