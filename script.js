@@ -98,6 +98,15 @@ const addToCart = () => {
   });
 };
 
+const clearCart = () => {
+  const reset = document.querySelector('.empty-cart');
+  const list = document.querySelector('.cart__items');
+  reset.addEventListener('click', () => {
+    list.innerText = '';
+  });
+};
+clearCart();
+
 window.onload = async () => {
  await products();
  await addToCart();
