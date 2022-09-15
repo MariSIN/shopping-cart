@@ -118,8 +118,29 @@ const removeSaveItem = () => {
   });
 };
 
+/* const totalPrice = async ({price}) => {
+  const tprice = document.querySelector('.total-price');
+  const liS = document.querySelectorAll('.cart__item');
+  let count = 0;
+  liS.forEach((e) => {
+    
+  });
+} */
+
+const loading = () => {
+ const carregando = document.querySelector('.loading');
+ carregando.innerText = 'carregando...';
+};
+
+const removeLoading = () => {
+  const removeL = document.querySelector('.loading');
+  removeL.innerText = '';
+};
+
 window.onload = async () => {
+ loading();
  await products();
+ removeLoading();
  addToCart();
  cart.innerHTML = getSavedCartItems();
  removeSaveItem();

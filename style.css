@@ -135,6 +135,14 @@ body {
   height: 100vh;
 }
 
+.total-price {
+  display: flex;
+  border:rgb(3, 52, 45), solid, 2px;
+  width: 170px;
+  height: 35px;
+  margin: 0 auto;
+}
+
 .cart .cart__items {
   height: 500px;
   overflow-y: scroll;
