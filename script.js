@@ -79,7 +79,7 @@ const totalPrice = async () => {
     const productAdd = Number(e.innerHTML.split('$')[1]);
     count += productAdd;
   });
-  tprice.innerText = count;
+  tprice.innerText = `${count}`;
 };
 
 const cartItemClickListener = (event) => {
@@ -128,7 +128,7 @@ const clearCart = () => {
   });
 };
 
-const removeItem = () => {
+const removeSaveItem = () => {
   const getLi = document.querySelectorAll('.cart__item');
   getLi.forEach((e) => {
     e.addEventListener('click', cartItemClickListener);
@@ -153,6 +153,6 @@ window.onload = async () => {
   addToCart();
   cart.innerHTML = getSavedCartItems();
   totalPrice();
-  removeItem();
+  removeSaveItem();
   removeLoading();
 };
