@@ -128,7 +128,7 @@ const clearCart = () => {
   });
 };
 
-const removeSaveItem = () => {
+const removeItem = () => {
   const getLi = document.querySelectorAll('.cart__item');
   getLi.forEach((e) => {
     e.addEventListener('click', cartItemClickListener);
@@ -153,6 +153,6 @@ window.onload = async () => {
   addToCart();
   cart.innerHTML = getSavedCartItems();
   totalPrice();
-  removeSaveItem();
+  removeItem();
   removeLoading();
 };
