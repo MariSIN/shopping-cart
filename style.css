@@ -137,7 +137,7 @@ body {
 
 .total-price {
   display: flex;
-  border:rgb(3, 52, 45), solid, 2px;
+  border: rgb(3, 52, 45), solid, 2px;
   width: 170px;
   height: 35px;
   margin: 0 auto;
