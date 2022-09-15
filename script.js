@@ -47,7 +47,7 @@ const createProductItemElement = ({ id, title, thumbnail }) => {
   const button = createCustomElement(
     'button',
     'item__add',
-    'Adicionar ao carrinho!'
+    'Adicionar ao carrinho!',
   );
   section.appendChild(button);
 
@@ -71,10 +71,21 @@ const createProductItemElement = ({ id, title, thumbnail }) => {
  */
 const cart = document.querySelector('.cart__items');
 
+const totalPrice = async () => {
+  const tprice = document.querySelector('.total-price');
+  const liS = document.querySelectorAll('.cart__item');
+  let count = 0;
+  liS.forEach((e) => {
+    const productAdd = Number(e.innerHTML.split('$')[1]);
+    count += productAdd;
+  });
+  tprice.innerText = `${count}`;
+};
+
 const cartItemClickListener = (event) => {
   event.target.remove();
-  saveCartItems(cart.innerHTML);
   totalPrice();
+  saveCartItems(cart.innerHTML);
 };
 
 const createCartItemElement = ({ id, title, price }) => {
@@ -112,8 +123,8 @@ const clearCart = () => {
   const list = document.querySelector('.cart__items');
   reset.addEventListener('click', () => {
     list.innerText = '';
-    saveCartItems(cart.innerHTML);
     totalPrice();
+    saveCartItems(cart.innerHTML);
   });
 };
 
@@ -121,18 +132,7 @@ const removeSaveItem = () => {
   const getLi = document.querySelectorAll('.cart__item');
   getLi.forEach((e) => {
     e.addEventListener('click', cartItemClickListener);
-  }); //como remover?
-};
-
-const totalPrice = async () => {
-  const tprice = document.querySelector('.total-price');
-  const liS = document.querySelectorAll('.cart__item');
-  let count = 0;
-  liS.forEach((e) => {
-    const productAdd = Number(e.innerHTML.split('$')[1]);
-    count += productAdd;
-  });
-  tprice.innerText = `${count}`;
+  }); // como remover?
 };
 
 const loading = () => {
