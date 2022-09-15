@@ -79,7 +79,7 @@ const totalPrice = async () => {
     const productAdd = Number(e.innerHTML.split('$')[1]);
     count += productAdd;
   });
-  tprice.innerText = `${count}`;
+  tprice.innerText = count;
 };
 
 const cartItemClickListener = (event) => {
@@ -132,7 +132,7 @@ const removeSaveItem = () => {
   const getLi = document.querySelectorAll('.cart__item');
   getLi.forEach((e) => {
     e.addEventListener('click', cartItemClickListener);
-  }); // como remover?
+  });
 };
 
 const loading = () => {
