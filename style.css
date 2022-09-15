@@ -135,11 +135,6 @@ body {
   height: 100vh;
 }
 
-.loading{
-
-  margin: 0;
-}
-
 .cart .cart__items {
   height: 500px;
   overflow-y: scroll;
