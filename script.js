@@ -1,5 +1,5 @@
 // Esse tipo de comentário que estão antes de todas as funções são chamados de JSdoc,
-// experimente passar o mouse sobre o nome das funções e verá que elas possuem descrições! 
+// experimente passar o mouse sobre o nome das funções e verá que elas possuem descrições!
 
 // Fique a vontade para modificar o código já escrito e criar suas próprias funções!
 
@@ -31,7 +31,7 @@ const createCustomElement = (element, className, innerText) => {
 
 /**
  * Função responsável por criar e retornar o elemento do produto.
- * @param {Object} product - Objeto do produto. 
+ * @param {Object} product - Objeto do produto.
  * @param {string} product.id - ID do produto.
  * @param {string} product.title - Título do produto.
  * @param {string} product.thumbnail - URL da imagem do produto.
@@ -44,9 +44,13 @@ const createProductItemElement = ({ id, title, thumbnail }) => {
   section.appendChild(createCustomElement('span', 'item_id', id));
   section.appendChild(createCustomElement('span', 'item__title', title));
   section.appendChild(createProductImageElement(thumbnail));
-  const button = createCustomElement('button', 'item__add', 'Adicionar ao carrinho!');
+  const button = createCustomElement(
+    'button',
+    'item__add',
+    'Adicionar ao carrinho!'
+  );
   section.appendChild(button);
-  
+
   return section;
 };
 
@@ -55,21 +59,22 @@ const createProductItemElement = ({ id, title, thumbnail }) => {
  * @param {Element} product - Elemento do produto.
  * @returns {string} ID do produto.
  */
- // const getIdFromProductItem = (product) => product.querySelector('span.item_id').innerText;
- 
- /**
-  * Função responsável por criar e retornar um item do carrinho.
-  * @param {Object} product - Objeto do produto.
-  * @param {string} product.id - ID do produto.
-  * @param {string} product.title - Título do produto.
-  * @param {string} product.price - Preço do produto.
-  * @returns {Element} Elemento de um item do carrinho.
-  */
+// const getIdFromProductItem = (product) => product.querySelector('span.item_id').innerText;
+
+/**
+ * Função responsável por criar e retornar um item do carrinho.
+ * @param {Object} product - Objeto do produto.
+ * @param {string} product.id - ID do produto.
+ * @param {string} product.title - Título do produto.
+ * @param {string} product.price - Preço do produto.
+ * @returns {Element} Elemento de um item do carrinho.
+ */
 const cart = document.querySelector('.cart__items');
 
 const cartItemClickListener = (event) => {
   event.target.remove();
   saveCartItems(cart.innerHTML);
+  totalPrice();
 };
 
 const createCartItemElement = ({ id, title, price }) => {
@@ -77,7 +82,6 @@ const createCartItemElement = ({ id, title, price }) => {
   li.className = 'cart__item';
   li.innerText = `ID: ${id} | TITLE: ${title} | PRICE: $${price}`;
   li.addEventListener('click', cartItemClickListener);
-
   return li;
 };
 
@@ -86,16 +90,18 @@ const products = async () => {
   allProducts.results.forEach((element) => {
     const getSectionParent = document.querySelector('.items');
     getSectionParent.appendChild(createProductItemElement(element));
-});
+  });
 };
 
 const addToCart = () => {
   const buttons = document.querySelectorAll('.item__add');
+
   buttons.forEach((e) => {
     e.addEventListener('click', async (event) => {
       const product = event.target.parentNode.firstChild.innerText;
       const productData = await fetchItem(product);
       cart.appendChild(createCartItemElement(productData));
+      totalPrice();
       saveCartItems(cart.innerHTML);
     });
   });
@@ -107,41 +113,46 @@ const clearCart = () => {
   reset.addEventListener('click', () => {
     list.innerText = '';
     saveCartItems(cart.innerHTML);
+    totalPrice();
   });
 };
-clearCart();
 
 const removeSaveItem = () => {
   const getLi = document.querySelectorAll('.cart__item');
   getLi.forEach((e) => {
     e.addEventListener('click', cartItemClickListener);
-  });
+  }); //como remover?
 };
 
-/* const totalPrice = async ({price}) => {
+const totalPrice = async () => {
   const tprice = document.querySelector('.total-price');
   const liS = document.querySelectorAll('.cart__item');
   let count = 0;
   liS.forEach((e) => {
-    
+    const productAdd = Number(e.innerHTML.split('$')[1]);
+    count += productAdd;
   });
-} */
+  tprice.innerText = `${count}`;
+};
 
 const loading = () => {
- const carregando = document.querySelector('.loading');
- carregando.innerText = 'carregando...';
+  const container = document.querySelector('.container');
+  container.before(createCustomElement('span', 'loading', 'carregando...'));
 };
 
 const removeLoading = () => {
   const removeL = document.querySelector('.loading');
-  removeL.innerText = '';
+  console.log(removeL);
+  removeL.remove();
 };
 
 window.onload = async () => {
- loading();
- await products();
- removeLoading();
- addToCart();
- cart.innerHTML = getSavedCartItems();
- removeSaveItem();
+  loading();
+  await products();
+  clearCart();
+  addToCart();
+  cart.innerHTML = getSavedCartItems();
+  totalPrice();
+  removeSaveItem();
+  removeLoading();
 };
