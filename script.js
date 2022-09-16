@@ -47,7 +47,7 @@ const createProductItemElement = ({ id, title, thumbnail }) => {
   const button = createCustomElement(
     'button',
     'item__add',
-    'Adicionar ao carrinho!'
+    'Adicionar ao carrinho!',
   );
   section.appendChild(button);
 
@@ -145,8 +145,18 @@ const removeLoading = () => {
   removeL.remove();
 };
 
+const hideCArt = () => {
+  const cartContainer = document.querySelector('.cart');
+  const icon = document.querySelector('.material-icons');
+  
+  icon.addEventListener('click', () => {
+    cartContainer.classList.toggle('hide');
+  });
+};
+
 window.onload = async () => {
   loading();
+  hideCArt();
   await products();
   clearCart();
   addToCart();

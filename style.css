@@ -135,6 +135,10 @@ body {
   height: 100vh;
 }
 
+.hide {
+  display: none;
+}
+
 .cart .cart__items {
   height: 500px;
   overflow-y: scroll;
