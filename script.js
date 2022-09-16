@@ -45,7 +45,7 @@ const createProductItemElement = ({ id, title, thumbnail, price }) => {
   section.appendChild(createCustomElement('span', 'item_id', id));
   section.appendChild(createCustomElement('span', 'item__title', title));
   section.appendChild(createProductImageElement(thumbnail));
-  section.appendChild(createCustomElement('span', 'item_price', `R$${price}`))
+  section.appendChild(createCustomElement('span', 'item_price', `R$${price}`));
 
   const button = createCustomElement(
     'button',
@@ -152,7 +152,7 @@ const iconClicked = () => {
   const iconC = document.querySelector('.material-icons');
 
   iconC.addEventListener('click', (e) => {
-    e.target.classList.toggle('clicked')
+    e.target.classList.toggle('clicked');
   });
 };
 
