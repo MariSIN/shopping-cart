@@ -47,7 +47,7 @@ const createProductItemElement = ({ id, title, thumbnail }) => {
   const button = createCustomElement(
     'button',
     'item__add',
-    'Adicionar ao carrinho!',
+    'Adicionar ao carrinho!'
   );
   section.appendChild(button);
 
@@ -79,7 +79,7 @@ const totalPrice = async () => {
     const productAdd = Number(e.innerHTML.split('$')[1]);
     count += productAdd;
   });
-  tprice.innerText = `${count}`;
+  tprice.innerText = count.toFixed(2);
 };
 
 const cartItemClickListener = (event) => {
@@ -142,7 +142,6 @@ const loading = () => {
 
 const removeLoading = () => {
   const removeL = document.querySelector('.loading');
-  console.log(removeL);
   removeL.remove();
 };
 
