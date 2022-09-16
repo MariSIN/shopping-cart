@@ -35,15 +35,18 @@ const createCustomElement = (element, className, innerText) => {
  * @param {string} product.id - ID do produto.
  * @param {string} product.title - Título do produto.
  * @param {string} product.thumbnail - URL da imagem do produto.
+ *  @param {string} product.price - preço do produto 
  * @returns {Element} Elemento de produto.
  */
-const createProductItemElement = ({ id, title, thumbnail }) => {
+const createProductItemElement = ({ id, title, thumbnail, price }) => {
   const section = document.createElement('section');
   section.className = 'item';
 
   section.appendChild(createCustomElement('span', 'item_id', id));
   section.appendChild(createCustomElement('span', 'item__title', title));
   section.appendChild(createProductImageElement(thumbnail));
+  section.appendChild(createCustomElement('span', 'item_price', `R$${price}`))
+
   const button = createCustomElement(
     'button',
     'item__add',
@@ -88,20 +91,20 @@ const cartItemClickListener = (event) => {
   saveCartItems(cart.innerHTML);
 };
 
-const createCartItemElement = ({ id, title, price }) => {
-  const li = document.createElement('li');
-  li.className = 'cart__item';
-  li.innerText = `ID: ${id} | TITLE: ${title} | PRICE: $${price}`;
-  li.addEventListener('click', cartItemClickListener);
-  return li;
-};
-
 const products = async () => {
   const allProducts = await fetchProducts('computador');
   allProducts.results.forEach((element) => {
     const getSectionParent = document.querySelector('.items');
     getSectionParent.appendChild(createProductItemElement(element));
   });
+};
+
+const createCartItemElement = ({ id, title, price }) => {
+  const li = document.createElement('li');
+  li.className = 'cart__item';
+  li.innerText = `ID: ${id} | TITLE: ${title} | PRICE: $${price}`;
+  li.addEventListener('click', cartItemClickListener);
+  return li;
 };
 
 const addToCart = () => {
@@ -145,13 +148,23 @@ const removeLoading = () => {
   removeL.remove();
 };
 
+const iconClicked = () => {
+  const iconC = document.querySelector('.material-icons');
+
+  iconC.addEventListener('click', (e) => {
+    e.target.classList.toggle('clicked')
+  });
+};
+
 const hideCArt = () => {
   const cartContainer = document.querySelector('.cart');
   const icon = document.querySelector('.material-icons');
-  
+  const containerCartTitle = document.querySelector('.container-cartTitle');
   icon.addEventListener('click', () => {
     cartContainer.classList.toggle('hide');
+    containerCartTitle.classList.toggle('hide');
   });
+  iconClicked();
 };
 
 window.onload = async () => {
