@@ -50,7 +50,7 @@ const createProductItemElement = ({ id, title, thumbnail, price }) => {
   const button = createCustomElement(
     'button',
     'item__add',
-    'Adicionar ao carrinho!',
+    'Adicionar ao carrinho',
   );
   section.appendChild(button);
 
@@ -83,6 +83,8 @@ const totalPrice = async () => {
     count += productAdd;
   });
   tprice.innerText = count.toFixed(2);
+  const totalItems = document.querySelector('.counter');
+  totalItems.innerHTML = liS.length;
 };
 
 const cartItemClickListener = (event) => {
@@ -102,11 +104,15 @@ const products = async () => {
 const createCartItemElement = ({ id, title, price, thumbnail }) => {
   const li = document.createElement('li');
   li.className = 'cart__item';
-  li.innerHTML += `
+  li.innerHTML += `<div class="detalhe"></div>
   <img class="item__image" src= ${thumbnail}>
   ID: ${id} | TITLE: ${title} | PRICE: $${price}
   `;
-  li.addEventListener('click', cartItemClickListener);
+  li.addEventListener('click', () => {
+    li.remove();
+    totalPrice();
+    saveCartItems(cart.innerHTML);
+  });
   return li;
 };
 
