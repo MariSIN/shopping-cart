@@ -106,7 +106,7 @@ const createCartItemElement = ({ id, title, price, thumbnail }) => {
   li.className = 'cart__item';
   li.innerHTML += `
   <img class="item__image" src= ${thumbnail}> 
-  <div class="detalhe"></div>
+  <img class="detale" src='/sd-025-a-project-shopping-cart/minus.png'></img>
   ID: ${id} | 
   TITLE: ${title} | 
   PRICE:$${price}
