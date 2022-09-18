@@ -104,9 +104,12 @@ const products = async () => {
 const createCartItemElement = ({ id, title, price, thumbnail }) => {
   const li = document.createElement('li');
   li.className = 'cart__item';
-  li.innerHTML += `<div class="detalhe"></div>
-  <img class="item__image" src= ${thumbnail}>
-  ID: ${id} | TITLE: ${title} | PRICE: $${price}
+  li.innerHTML += `
+  <img class="item__image" src= ${thumbnail}> 
+  <div class="detalhe"></div>
+  ID: ${id} | 
+  TITLE: ${title} | 
+  PRICE:$${price}
   `;
   li.addEventListener('click', () => {
     li.remove();
