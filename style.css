@@ -100,15 +100,15 @@ body {
   margin: 5px;
   width: 272px;
   border: 2px solid rgb(234, 234, 233);
-  box-shadow: 0px 3px 4px rgba(90, 92, 90, 0.356);
-  background-color: rgb(255, 255, 255);
+  box-shadow: 0.3px 3px 4px rgba(90, 92, 90, 0.356);
+  background-color: white;
   border-radius: 6px;
   box-sizing: border-box;
 }
 
 .item:hover {
   transition-duration: 500ms;
-  box-shadow: 0px 5px 10px rgba(5, 26, 12, 0.454);
+  box-shadow: 0.3px 5px 10px rgba(5, 26, 12, 0.454);
   width: 274px;
 }
 
@@ -130,18 +130,18 @@ body {
   margin-right: 18px;
 }
 
-.item .item__image {
-  width: 60%;
-  order: -1;
-  align-self: center;
-}
-
 li .item__image {
   border-radius: 100%;
   width: 107px;
   height: 107px;
   margin-top: -20px;
   margin-left: 40px;
+}
+
+.item .item__image {
+  width: 60%;
+  order: -1;
+  align-self: center;
 }
 
 .item .item_price {
@@ -172,7 +172,7 @@ li .item__image {
 .item .item__add:hover {
   transition-duration: 550ms;
   background-color: rgb(47, 193, 140);
-  box-shadow: 0px 2px 5px rgb(3, 107, 82);
+  box-shadow: 0.3px 2px 5px rgb(3, 107, 82);
 }
 
 .item .item__add:active {
