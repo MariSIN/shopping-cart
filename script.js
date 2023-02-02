@@ -170,11 +170,15 @@ const iconClicked = () => {
 
 const hideCArt = () => {
   const cartContainer = document.querySelector('.cart');
+  const itemsList = document.querySelector('.items');
   const icon = document.querySelector('.material-icons');
+  const spanCounter = document.querySelector('.counter');
   const containerCartTitle = document.querySelector('.container-cartTitle');
   icon.addEventListener('click', () => {
     cartContainer.classList.toggle('hide');
     containerCartTitle.classList.toggle('hide');
+    itemsList.classList.toggle('aside');
+    spanCounter.classList.toggle('clicked');
   });
   iconClicked();
 };
