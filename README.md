@@ -2,6 +2,8 @@
 
 ### Sétimo projeto feito no curso de Desenvolvimento Web na Trybe e primeiro projeto de Front-End
 
+:paperclip: https://shopping-cart-orpin-five.vercel.app/
+
 <details>
   <summary><strong>👨‍💻 O que foi desenvolvido</strong></summary><br />
   
