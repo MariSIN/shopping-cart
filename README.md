@@ -1,26 +1,8 @@
 # Boas-vindas ao repositório do projeto Carrinho de Compras!
 
-### Sétimo projeto feito no curso de Desenvolvimento Web na Trybe e primeiro projeto de Front-End
+Neste projeto foram consumidos dados diretamente de uma API e o desenvolvimento foi orientado a testes (TDD), garantindo um código de qualidade e verificando se a aplicação estava funcionando corretamente. A experiência foi enriquecedora, permitindo compreender melhor os casos de uso da aplicação e garantindo sua efetividade.
 
 :paperclip: https://shopping-cart-orpin-five.vercel.app/
-
-<details>
-  <summary><strong>👨‍💻 O que foi desenvolvido</strong></summary><br />
-  
-Um **carrinho de compras** totalmente dinâmico! 🛒
-
-Para isso, foi consumido dados diretamente de uma **API!** 🤩
-
-Nesse projeto pude ter a experiência de pôr em prática o desenvolvimento orientado a testes, o famoso TDD (Test Driven Development)! Que te ajuda a garantir um código de qualidade, percebendo os casos de uso da sua aplicação e garantindo que ela está funcionando da maneira correta! 🚀
-
-</details>
-
-<details>
-  <summary><strong>🛠 Testes</strong></summary><br />
-
-Nesse projeto foi implementado o TDD (Test Driven Development) também conhecido como _desenvolvimento orientado a testes_, que é uma prática muito utilizada no mercado de trabalho para garantir que o código será implementado da maneira correta. Ou seja, primeiro deve-se escrever o teste para uma função e depois vai implementar a lógica para que a função execute.
-
-</details>
 
 <details>
 <summary><strong>⚙️ API do Mercado Livre</strong></summary><br />
