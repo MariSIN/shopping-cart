@@ -1,6 +1,6 @@
 # Boas-vindas ao repositório do projeto Carrinho de Compras!
 
-Neste projeto foi desenvolvido um carrinho de compras onde foram consumidos dados diretamente de uma API e o desenvolvimento foi orientado a testes (TDD), garantindo um código de qualidade e verificando se a aplicação estava funcionando corretamente. A experiência foi enriquecedora, permitindo compreender melhor os casos de uso da aplicação e garantindo sua efetividade.
+Neste projeto foi desenvolvido um carrinho de compras onde foram consumidos dados diretamente de uma API e o desenvolvimento foi orientado a testes (TDD), garantindo um código de qualidade e verificando se a aplicação estava funcionando corretamente. 
 
 :paperclip: https://shopping-cart-orpin-five.vercel.app/
 
